@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asaadeh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/31 11:06:13 by asaadeh           #+#    #+#             */
-/*   Updated: 2024/09/04 14:34:25 by asaadeh          ###   ########.fr       */
+/*   Created: 2024/09/16 15:28:52 by asaadeh           #+#    #+#             */
+/*   Updated: 2024/09/16 15:28:56 by asaadeh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -40,9 +50,41 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr[b] = '\0';
 	return (ptr);
 }
-// int	main(void)
-// {
-// 	char	* s1 = "aahmad";
-// 	char	*s2 = "saadeh";
-// 	printf("%s",ft_strjoin(s1,s2));
-// }
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = (char *)s;
+	while (1)
+	{
+		if (str[i] == (char)c)
+			return (str + i);
+		if (str[i] == '\0')
+			return (NULL);
+		i++;
+	}
+}
+
+char	*ft_strdup(const char *s, int i)
+{
+	int		j;
+	char	*ptr;
+	char	*src;
+
+	src = (char *)s;
+	j = 0;
+	ptr = malloc(sizeof(char) * (ft_strlen(src) - i + 1));
+	if (!ptr)
+		return (NULL);
+	while (src[i] != '\0')
+	{
+		ptr[j] = src[i];
+		i++;
+		j++;
+	}
+	ptr[j] = '\0';
+	return (ptr);
+}
